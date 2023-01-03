@@ -2,7 +2,9 @@
 
 2. Generate a jwt by running command below and move to `./jwt`
 
-```openssl rand -hex 32 | tr -d "\n" > "./jwt/jwt.hex"```
+    ```
+    openssl rand -hex 32 | tr -d "\n" > "./jwt/jwt.hex"
+    ```
 
 3. run `docker network create ethereum` to create a network named ethereum
 
