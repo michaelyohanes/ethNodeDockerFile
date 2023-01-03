@@ -1,0 +1,9 @@
+FROM ethereum/client-go:stable
+
+EXPOSE 8545
+EXPOSE 8546
+EXPOSE 8551
+
+COPY ./jwt /tmp/jwt/jwtsecret
+
+WORKDIR /

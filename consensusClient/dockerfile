@@ -1,0 +1,8 @@
+FROM gcr.io/prysmaticlabs/prysm/beacon-chain:stable
+
+EXPOSE 4000
+EXPOSE 4001
+
+COPY ./jwt /tmp/jwt/jwtsecret
+
+WORKDIR /
