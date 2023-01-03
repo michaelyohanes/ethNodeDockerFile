@@ -13,7 +13,7 @@
 5. build geth docker image `docker build -f executionClient/dockerfile -t geth-docker .`
 
 6. type `bash` in terminal to use bash 
-(optional step, as in mac zsh running the command below will have `zsh: no matches found: --authrpc.vhosts=*` wrr)
+   (optional step, as in mac zsh running the command below will have `zsh: no matches found: --authrpc.vhosts=*` err)
 
 7. start execution client (geth) container by running
 ```
