@@ -1,9 +1,18 @@
-FROM ethereum/client-go:stable
+FROM ethereum/client-go:stable as client
+FROM debian:buster-slim
 
+COPY --from=client /usr/local/bin /app
+
+EXPOSE 8008
 EXPOSE 8545
 EXPOSE 8546
 EXPOSE 8551
+EXPOSE 30303
 
-COPY ./jwt /tmp/jwt/jwtsecret
+COPY ./jwt /tmp/jwt
 
-WORKDIR /
+COPY executionClient/run.sh /app
+
+RUN chmod +x /app/run.sh
+
+ENTRYPOINT ["/app/run.sh"]

@@ -1,8 +1,18 @@
-FROM gcr.io/prysmaticlabs/prysm/beacon-chain:stable
+FROM --platform=linux/amd64 gcr.io/prysmaticlabs/prysm/beacon-chain:stable as beacon
+FROM debian:buster-slim
+
+COPY --from=beacon /app /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils curl gnupg libc6
+
+COPY ./jwt /tmp/jwt
 
 EXPOSE 4000
-EXPOSE 4001
+EXPOSE 13000
+EXPOSE 12000/udp
 
-COPY ./jwt /tmp/jwt/jwtsecret
+COPY consensusClient/run.sh /app
 
-WORKDIR /
+RUN chmod +x /app/run.sh
+
+ENTRYPOINT ["/app/run.sh"]
